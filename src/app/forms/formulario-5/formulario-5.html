@@ -1,0 +1,45 @@
+<hr>
+
+<h1>Form Builder com Validação</h1>
+
+<form [formGroup]="formulario">
+    <label for="nome">Nome: </label>
+    <input type="text" formControlName="nome" id="nome">
+    <button type="button" (click)="limparNome()">Limpar</button>
+    <!-- Tratamento de Erros do Campo nome -->
+    @if(nome?.invalid && nome?.touched){
+        <div class="erros">
+            @if(nome?.errors?.['required']){<span>Nome é obrigatório.</span>}
+            @if(nome?.errors?.['minlength']){<span>Nome deve ter no mínimo 3 caracteres.</span>}
+        </div>
+    }
+
+    <p>Valor do Nome: {{ formulario.value.nome }}</p>
+
+    <div formGroupName="endereco">
+        <h3>Endereço</h3>
+        <label for="logradouro">Logradouro:</label>
+        <input type="text" formControlName="logradouro" id="logradouro">
+
+        <label for="numero">Número:</label>
+        <input type="text" formControlName="numero" id="numero">
+        <!-- Tratamento de Erros do Campo numero -->
+        @if(numero?.invalid && numero?.touched){
+            <div class="erros">
+                @if(numero?.errors?.['zeroNaoPermitido']){<span>O valor zero não é permitido.</span>}
+            </div>
+        }
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" formControlName="bairro" id="bairro">
+        <!-- Tratamento de Erros do Campo bairro -->
+        @if(endereco?.invalid && endereco?.touched){
+            <div class="erros">
+                @if(endereco?.errors?.['bairroNoLogradouro']){<span>Não escreva o bairro no logradouro.</span>}
+            </div>
+        }
+    </div>
+
+    <br>
+    <button type="button" (click) = "limparTudo()">Limpar Tudo</button>
+</form>

@@ -1,0 +1,26 @@
+<hr>
+
+<h1>Form Builder</h1>
+
+<form [formGroup]="formulario">
+    <label for="nome">Nome: </label>
+    <input type="text" formControlName="nome" id="nome">
+    <button type="button" (click)="limparNome()">Limpar</button>
+
+    <p>Valor do Nome: {{ formulario.value.nome }}</p>
+
+    <div formGroupName="endereco">
+        <h3>Endereço</h3>
+        <label for="logradouro">Logradouro:</label>
+        <input type="text" formControlName="logradouro" id="logradouro">
+
+        <label for="numero">Número:</label>
+        <input type="text" formControlName="numero" id="numero">
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" formControlName="bairro" id="bairro">
+    </div>
+
+    <br>
+    <button type="button" (click) = "limparTudo()">Limpar Tudo</button>
+</form>
