@@ -35,7 +35,7 @@
         <!-- Tratamento de Erros do Campo bairro -->
         @if(endereco?.invalid && endereco?.touched){
             <div class="erros">
-                @if(endereco?.errors?.['bairroNoLogradouro']){<span>Não escreva o bairro no logradouro.</span>}
+                @if(endereco?.errors?.['bairroNoLogradouro']){<span>Não escreva o número e bairro no logradouro.</span>}
             </div>
         }
     </div>

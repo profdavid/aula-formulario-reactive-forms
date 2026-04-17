@@ -15,12 +15,14 @@ function bairroNoLogradouro(): ValidatorFn{
   return (control: AbstractControl) => {
     const logradouro = String(control.get('logradouro')?.value ?? '');
     const bairro = String(control.get('bairro')?.value ?? '');
+    const numero = String(control.get('numero')?.value ?? '');
 
     //Nomalização
     const logradouroNorm = logradouro.trim().toLowerCase();
     const bairroNorm = bairro.trim().toLowerCase();
+    const numeroNorm = numero.trim().toLowerCase();
 
-    return (logradouroNorm != '' && bairroNorm != '' && logradouroNorm.includes(bairroNorm)) ? {bairroNoLogradouro: true} : null;
+    return (logradouroNorm != '' && bairroNorm != '' && numeroNorm != '' && (logradouroNorm.includes(bairroNorm) || logradouroNorm.includes(numeroNorm))) ? {bairroNoLogradouro: true} : null;
   };
 }
 
